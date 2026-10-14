@@ -73,7 +73,7 @@ export default function EntryFlow({ onEnter, promo }) {
                   <button type="button" onClick={() => setStep('balance')}>J’ai terminé →</button>
                 </div>
               )}
-              <small>.</small>
+              <small></small>
             </div>
           )}
 
