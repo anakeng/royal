@@ -1,4 +1,4 @@
-import { callRoyalRpc } from '../../remote.js';
+import { callRoyalRpc } from './remote.js';
 import { PredictionError, parsePrediction } from './prediction.js';
 
 export async function predictRoyalDishes(signal) {

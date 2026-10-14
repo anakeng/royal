@@ -1,4 +1,4 @@
-import { ANON_KEY, SUPABASE_URL } from '../../remote.js';
+import { ANON_KEY, SUPABASE_URL } from './remote.js';
 
 const STORAGE_KEY = 'royal-admin-session-v1';
 let session = null;

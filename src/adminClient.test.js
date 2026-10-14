@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ANON_KEY } from '../../remote.js';
+import { ANON_KEY } from './remote.js';
 import { createUser, hasAdminSession, signInAdmin, signOutAdmin } from './adminClient.js';
 
 function storage() {

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ANON_KEY } from '../../remote.js';
+import { ANON_KEY } from './remote.js';
 import { predictRoyalDishes } from './royalApi.js';
 
 test('predictor reads the shared minute without login or round code', async () => {
