@@ -115,8 +115,8 @@ export default function App() {
       <main className="main-layout">
         <section className="intro-panel" aria-labelledby="page-title">
           <p className="eyebrow">LE JEU DES 25 PLATS</p>
-          <h1 id="page-title">Les plats de <em>Royal.</em></h1>
-          <p className="intro-text">Le jeu et ce prédicteur utilisent le même plateau partagé. Chaque minute, une nouvelle combinaison de 1 à 10 plats sûrs s’affiche automatiquement.</p>
+          <h1 id="page-title"> Feast<em>Royal.</em></h1>
+          <p className="intro-text"></p>
 
           <div className="minute-panel" role="timer" aria-label="Temps restant avant la prochaine combinaison">
             <span>PROCHAINE COMBINAISON</span>
