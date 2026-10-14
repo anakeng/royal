@@ -1,5 +1,13 @@
 # Prédicteur Royal
 
+## Accueil et codes promo
+
+À l'ouverture, l'écran affiche « Non synchronisé ». Un clic ouvre la question sur le code promo, puis celle du solde, puis la saisie de l'ID joueur. Une animation de synchronisation de trois secondes précède le chargement du prédicteur. Le badge indique « Non connecté au jeu » jusqu'à la première réponse Supabase.
+
+Les codes, couleurs et liens partenaires sont définis dans `src/promo/config.js`. Pour partager une promotion, ajoute uniquement son identifiant long à l'adresse du site : `https://VOTRE-SITE.vercel.app/?promo=enj55-a1b2c3d4-e5f6-7890-abcd-ef1234567890`. Le code affiché et les couleurs de l'accueil et du prédicteur changent ensemble. Le code court (`ENJ55`, par exemple) ne sélectionne pas une promotion dans l'URL. Sans identifiant reconnu, la promotion par défaut est utilisée. `affiliateLink` est le lien d'inscription externe affiché lorsque le visiteur répond « Non » ; ce n'est pas l'adresse d'ouverture du prédicteur. Les identifiants longs sont visibles dans le code chargé par le navigateur et ne constituent pas une protection d'accès.
+
+L'ID joueur et les déclarations concernant le code promo et le solde restent dans le navigateur pendant cette visite. L'application ne les vérifie pas auprès de 1xBet.
+
 Royal et le prédicteur interrogent le **même projet Supabase**, sans code de partie. Le **jeu Royal demande une connexion e-mail/mot de passe** ; le prédicteur reste accessible sans compte. Le serveur conserve cinq positions de poison communes à toutes les nouvelles parties. Royal place les mets sur les 20 cases sûres ; le prédicteur choisit chaque minute une combinaison de **1 à 10 cases sûres**. Le compte à rebours utilise l'heure renvoyée par Supabase et le site recharge automatiquement la combinaison à la minute suivante.
 
 Les plats sont numérotés de 1 à 25, de gauche à droite et de haut en bas. La combinaison peut inclure une case déjà ouverte dans une partie, car le site ne reçoit aucun identifiant ni l'historique des ouvertures de chaque joueur. Elle indique toujours une case sans poison pour les **nouvelles parties créées avec le plateau partagé**.

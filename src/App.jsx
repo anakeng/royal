@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { DISH_COUNT } from './prediction.js';
 import { predictRoyalDishes } from './royalApi.js';
+import EntryFlow from './EntryFlow.jsx';
+import { getPromoFromSearch } from './promo/config.js';
 
 const dishes = Array.from({ length: DISH_COUNT }, (_, index) => index + 1);
 
@@ -25,6 +27,16 @@ function minuteClock(ms) {
 }
 
 export default function App() {
+  const { promo } = getPromoFromSearch(window.location.search);
+  const themeStyle = {
+    '--promo-primary': promo.colors.primary,
+    '--promo-primary-dark': promo.colors.primaryDark,
+    '--promo-accent': promo.colors.accent,
+    '--promo-glow-1': promo.colors.glow1,
+    '--promo-glow-2': promo.colors.glow2,
+    '--promo-success': promo.colors.success,
+  };
+  const [entered, setEntered] = useState(false);
   const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -35,6 +47,7 @@ export default function App() {
   const loadRef = useRef(null);
 
   useEffect(() => {
+    if (!entered) return;
     let active = true;
     async function load(background = false) {
       if (!active || request.current || document.hidden) return;
@@ -88,7 +101,7 @@ export default function App() {
       request.current?.abort();
       document.removeEventListener('visibilitychange', onVisible);
     };
-  }, []);
+  }, [entered]);
 
   function refresh() {
     request.current?.abort();
@@ -100,7 +113,7 @@ export default function App() {
   const positions = prediction ? [...prediction.positions].sort((a, b) => a - b) : [];
 
   return (
-    <div className="site-shell">
+    <div className="site-shell" style={themeStyle}>
       <header className="site-header">
         <div className="brand">
           <img src="/royal-mark.svg" alt="" className="brand-mark" />
@@ -108,7 +121,7 @@ export default function App() {
         </div>
         <span className={`connection${prediction ? ' connection--ready' : ''}`}>
           <span className="connection-dot" />
-          {prediction ? 'Connecté au jeu' : 'Connexion au jeu'}
+          {prediction ? 'Connecté au jeu' : 'Non connecté au jeu'}
         </span>
       </header>
 
@@ -158,6 +171,7 @@ export default function App() {
         </section>
       </main>
       <footer className="site-footer">ROYAL <span>✦</span> PRÉDICTEUR</footer>
+      {!entered && <EntryFlow onEnter={setEntered} promo={promo} />}
     </div>
   );
 }
